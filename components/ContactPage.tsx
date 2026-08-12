@@ -29,23 +29,48 @@ function Arrow() { return <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M
 
 export default function ContactPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [submitState, setSubmitState] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [submitState, setSubmitState] = useState<"idle" | "sending">("idle");
+  const [notification, setNotification] = useState<{
+    type: "success" | "error";
+    title: string;
+    message: string;
+  } | null>(null);
   const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = event.currentTarget;
     setSubmitState("sending");
-    const data = new FormData(event.currentTarget);
+    const data = new FormData(form);
     try {
       const response = await fetch("/api/appointments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(Object.fromEntries(data.entries())),
       });
-      if (!response.ok) throw new Error("Unable to save appointment");
-      event.currentTarget.reset();
-      setSubmitState("success");
-    } catch {
-      setSubmitState("error");
+      const result = await response.json().catch(() => null);
+      if (!response.ok || !result?.success) {
+        setNotification({
+          type: "error",
+          title: "Appointment not saved",
+          message: result?.error ?? "We couldn\'t save your appointment. Please try again or call us.",
+        });
+        setSubmitState("idle");
+        return;
+      }
+      form.reset();
+      setNotification({
+        type: "success",
+        title: "Appointment request received",
+        message: "Your details have been saved. The STYLEHVN team will contact you shortly to confirm your appointment.",
+      });
+      setSubmitState("idle");
+    } catch (error) {
+      setNotification({
+        type: "error",
+        title: "Appointment not saved",
+        message: "We couldn\'t save your appointment. Please try again or call us.",
+      });
+      setSubmitState("idle");
     }
   };
   const businessSchema = {
@@ -86,18 +111,15 @@ export default function ContactPage() {
           <label className="ct-picker-label">Preferred Time<span className="ct-picker"><i aria-hidden="true">◷</i><select name="time" required defaultValue=""><option value="" disabled>Select a time</option>{appointmentTimes.map(time=><option key={time.value} value={time.value}>{time.label}</option>)}</select></span><small>Available from 8:00 AM to 9:00 PM</small></label>
           <label className="ct-full">Message<textarea name="message" rows={4} placeholder="Tell us about the look or treatment you have in mind" /></label>
           <button className="ct-full" type="submit" disabled={submitState==="sending"}>{submitState==="sending"?"Saving Your Appointment…":"Book My Appointment"} <Arrow /></button>
-          {submitState==="error" && <p className="ct-form-status ct-form-error" role="alert">We couldn&apos;t save your appointment. Please try again or call us.</p>}
         </motion.form>
       </section>
 
       <AnimatePresence>
-        {submitState==="success" && <motion.div className="ct-success-modal" role="dialog" aria-modal="true" aria-labelledby="booking-success-title" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={()=>setSubmitState("idle")}>
+        {notification && <motion.div className={`ct-success-modal ${notification.type === "error" ? "ct-error-modal" : ""}`} role="dialog" aria-modal="true" aria-labelledby="booking-notification-title" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={()=>setNotification(null)}>
           <motion.div initial={{opacity:0,y:28,scale:.96}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,y:18,scale:.97}} transition={{duration:.45,ease:[.22,1,.36,1]}} onClick={event=>event.stopPropagation()}>
-            <button type="button" className="ct-success-close" aria-label="Close confirmation" onClick={()=>setSubmitState("idle")}>×</button>
-            <span className="ct-success-mark">S</span><small>APPOINTMENT REQUEST RECEIVED</small>
-            <h2 id="booking-success-title">Let&apos;s change<br />your look.</h2>
-            <p>Your details have been saved. The STYLEHVN team will contact you shortly to confirm your appointment.</p>
-            <button type="button" className="ct-success-done" onClick={()=>setSubmitState("idle")}>Done <Arrow /></button>
+            <button type="button" className="ct-success-close" aria-label="Close notification" onClick={()=>setNotification(null)}>×</button>
+            <p>{notification.message}</p>
+            <button type="button" className="ct-success-done" onClick={()=>setNotification(null)}>{notification.type === "success" ? "Done" : "Close"} <Arrow /></button>
           </motion.div>
         </motion.div>}
       </AnimatePresence>
