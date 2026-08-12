@@ -1422,6 +1422,96 @@ button {
 .cta-outline-dark { border: 1px solid rgba(10,9,5,.45); }
 .cta-outline-dark:hover { background: rgba(255,255,255,.2); }
 
+/* Shared two-number call chooser */
+.call-now-menu {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  z-index: 20;
+}
+.call-now-trigger {
+  min-height: 52px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 11px;
+  appearance: none;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform .3s ease, background-color .3s ease, box-shadow .3s ease;
+}
+.call-now-trigger:hover { transform: translateY(-3px); }
+.call-now-trigger svg,
+.call-number-options svg {
+  width: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+.call-number-options {
+  width: max-content;
+  min-width: 235px;
+  padding: 8px;
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 10px);
+  display: grid;
+  gap: 4px;
+  border: 1px solid rgba(212,175,55,.35);
+  border-radius: 15px;
+  background: rgba(10,10,10,.97);
+  box-shadow: 0 20px 55px rgba(0,0,0,.35);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px) scale(.98);
+  transform-origin: bottom left;
+  pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease, visibility .22s;
+}
+.call-number-options.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.call-number-options > span {
+  padding: 7px 10px 5px;
+  color: #d4af37;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.call-number-options a {
+  min-height: 44px !important;
+  padding: 0 11px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between !important;
+  gap: 18px;
+  border: 0 !important;
+  border-radius: 10px !important;
+  color: #fff !important;
+  background: rgba(255,255,255,.065) !important;
+  font-size: 12px !important;
+  font-weight: 700;
+  letter-spacing: .01em;
+  transform: none !important;
+}
+.call-number-options a:hover {
+  color: #090909 !important;
+  background: #d4af37 !important;
+  box-shadow: none !important;
+}
+
 @media (max-width: 900px) {
   .signature-services {
     padding-inline: 22px;
@@ -2322,7 +2412,7 @@ button {
 .ct-dark { color:#fff; background:#080808; }
 .ct-outline-dark { color:#080808; border:1px solid rgba(0,0,0,.4); }
 @media(max-width:950px){.ct-info{grid-template-columns:1fr 1fr}.ct-form-section,.ct-map-section,.ct-hours{grid-template-columns:1fr}.ct-form-copy{position:relative;top:auto}.ct-map{height:520px}.ct-why>div{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.ct-shell{padding:90px 16px}.ct-hero{min-height:800px}.ct-hero-copy{left:18px;top:51%}.ct-hero h1{font-size:clamp(52px,16vw,72px)}.ct-actions{flex-direction:column}.ct-actions a{width:100%}.ct-info{grid-template-columns:1fr}.ct-info a{min-height:190px}.ct-form-section{gap:50px}.ct-form{grid-template-columns:1fr;padding:25px 18px}.ct-form label{grid-column:1}.ct-map-section,.ct-hours,.ct-final{padding:90px 16px}.ct-map{height:420px}.ct-why>div{grid-template-columns:1fr 1fr}.ct-why article{min-height:175px;padding:17px}.ct-form-copy h2,.ct-map-section h2,.ct-hours h2,.ct-why h2,.ct-social h2,.ct-faq h2{font-size:clamp(42px,12vw,58px)}.ct-faq button{grid-template-columns:35px 1fr 25px;font-size:16px}.ct-faq article p{margin-left:35px}.ct-final>div{padding:38px 22px;border-radius:22px}}
+@media(max-width:600px){.ct-shell{padding:90px 16px}.ct-hero{min-height:800px}.ct-hero-copy{left:18px;top:51%}.ct-hero h1{font-size:clamp(52px,16vw,72px)}.ct-actions{flex-direction:column}.ct-actions a,.ct-actions .call-now-menu,.ct-actions .call-now-trigger{width:100%}.ct-info{grid-template-columns:1fr}.ct-info a{min-height:190px}.ct-form-section{gap:50px}.ct-form{grid-template-columns:1fr;padding:25px 18px}.ct-form label{grid-column:1}.ct-map-section,.ct-hours,.ct-final{padding:90px 16px}.ct-map{height:420px}.ct-why>div{grid-template-columns:1fr 1fr}.ct-why article{min-height:175px;padding:17px}.ct-form-copy h2,.ct-map-section h2,.ct-hours h2,.ct-why h2,.ct-social h2,.ct-faq h2{font-size:clamp(42px,12vw,58px)}.ct-faq button{grid-template-columns:35px 1fr 25px;font-size:16px}.ct-faq article p{margin-left:35px}.ct-final>div{padding:38px 22px;border-radius:22px}}
 
 /* Services page */
 .services-page { color: #f7f4ed; background: #070707; }

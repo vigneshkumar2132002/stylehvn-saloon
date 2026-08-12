@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import CallNowMenu from "./CallNowMenu";
 
 const reveal = {
   initial: { opacity: 0, y: 36 },
@@ -48,9 +49,7 @@ export default function TransformationCta() {
           <a href="#contact" className="cta-dark">
             Book Appointment <Arrow />
           </a>
-          <a href="tel:+919187157676" className="cta-outline-dark">
-            Call Now <Arrow />
-          </a>
+          <CallNowMenu className="cta-outline-dark" />
         </div>
       </motion.div>
     </section>

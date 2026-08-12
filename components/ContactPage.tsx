@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FormEvent, useState } from "react";
+import CallNowMenu from "./CallNowMenu";
 
 const services = ["Women's Hair", "Men's Hair", "Kids Haircut", "Hair Botox", "Keratin", "Nanoplastia", "Hair Colour", "Hair Spa", "Bridal Makeup", "Party Makeup", "Facial", "Nail Art", "Manicure", "Pedicure", "Head Massage", "Body Massage"];
 const features = ["Experienced Stylists", "Premium Products", "Luxury Interior", "Certified Experts", "Advanced Hair Treatments", "Family Friendly", "Relaxing Environment", "Parking Available"];
@@ -46,7 +47,7 @@ export default function ContactPage() {
           <span className="ct-kicker">CONTACT STYLEHVN</span>
           <h1 id="ct-title">Let&apos;s Create<br />Your Next<br />Signature Look</h1>
           <p>Whether you&apos;re planning a complete makeover, booking your regular haircut or exploring luxury Hair Botox, Keratin, Nanoplastia, nail artistry, facials or spa treatments, our experts are ready to welcome you.</p>
-          <div className="ct-actions"><a className="ct-gold" href="#appointment">Book Appointment <Arrow /></a><a className="ct-line" href="tel:+919187157676">Call Now <Arrow /></a><a className="ct-line" href="https://wa.me/919187157676" target="_blank" rel="noreferrer">WhatsApp <Arrow /></a></div>
+          <div className="ct-actions"><a className="ct-gold" href="#appointment">Book Appointment <Arrow /></a><CallNowMenu className="ct-line" /><a className="ct-line" href="https://wa.me/919187157676" target="_blank" rel="noreferrer">WhatsApp <Arrow /></a></div>
         </motion.div>
       </section>
 
@@ -71,7 +72,7 @@ export default function ContactPage() {
 
       <section className="ct-map-section">
         <motion.div className="ct-map" {...reveal}><iframe title="Google map showing STYLEHVN Unisex Salon" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=STYLEHVN%20UNISEX%20SALON%20Yelahanka%20New%20Town&output=embed" /></motion.div>
-        <motion.aside {...reveal}><span className="ct-kicker">FIND STYLEHVN</span><h2>In the heart of<br />Yelahanka New Town.</h2><p>1st Floor, D4-377,<br />KHB Colony, Self Financed Society 407 Colony,<br />Yelahanka New Town, Bengaluru,<br />Karnataka 560064</p><div className="ct-actions"><a className="ct-gold" href="https://maps.google.com/?q=STYLEHVN+UNISEX+SALON+Yelahanka" target="_blank" rel="noreferrer">Open Google Maps <Arrow /></a><a className="ct-line" href="tel:+919187157676">Call Now <Arrow /></a></div></motion.aside>
+        <motion.aside {...reveal}><span className="ct-kicker">FIND STYLEHVN</span><h2>In the heart of<br />Yelahanka New Town.</h2><p>1st Floor, D4-377,<br />KHB Colony, Self Financed Society 407 Colony,<br />Yelahanka New Town, Bengaluru,<br />Karnataka 560064</p><div className="ct-actions"><a className="ct-gold" href="https://maps.google.com/?q=STYLEHVN+UNISEX+SALON+Yelahanka" target="_blank" rel="noreferrer">Open Google Maps <Arrow /></a><CallNowMenu className="ct-line" /></div></motion.aside>
       </section>
 
       <section className="ct-hours" id="hours">
@@ -94,7 +95,7 @@ export default function ContactPage() {
         <div>{faqs.map(([question,answer],index)=><article key={question} className={openFaq===index?"open":""}><button type="button" onClick={()=>setOpenFaq(openFaq===index?null:index)} aria-expanded={openFaq===index}><span>0{index+1}</span>{question}<i>{openFaq===index?"−":"+"}</i></button><div><p>{answer}</p></div></article>)}</div>
       </section>
 
-      <section className="ct-final"><motion.div {...reveal}><span>WELCOME TO STYLEHVN</span><h2>Ready For Your Luxury<br />Salon Experience?</h2><div className="ct-actions"><a className="ct-dark" href="#appointment">Book Appointment <Arrow /></a><a className="ct-outline-dark" href="tel:+919187157676">Call Now <Arrow /></a><a className="ct-outline-dark" href="https://wa.me/919187157676" target="_blank" rel="noreferrer">WhatsApp <Arrow /></a></div></motion.div></section>
+      <section className="ct-final"><motion.div {...reveal}><span>WELCOME TO STYLEHVN</span><h2>Ready For Your Luxury<br />Salon Experience?</h2><div className="ct-actions"><a className="ct-dark" href="#appointment">Book Appointment <Arrow /></a><CallNowMenu className="ct-outline-dark" /><a className="ct-outline-dark" href="https://wa.me/919187157676" target="_blank" rel="noreferrer">WhatsApp <Arrow /></a></div></motion.div></section>
     </>
   );
 }

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import CallNowMenu from "./CallNowMenu";
 
 const services = [
   {
@@ -207,7 +208,7 @@ export default function SignatureServices() {
         </div>
         <div className="services-cta-actions">
           <a href="#contact" className="cta-dark">Book Appointment <Arrow /></a>
-          <a href="tel:+919187157676" className="cta-outline-dark">Call Now <Arrow /></a>
+          <CallNowMenu className="cta-outline-dark" />
         </div>
       </motion.div>
     </section>

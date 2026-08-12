@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import CallNowMenu from "./CallNowMenu";
 
 const reveal = {
   initial: { opacity: 0, y: 38 },
@@ -104,7 +105,7 @@ export default function AboutPage() {
           <p>STYLEHVN Unisex Salon is a premium destination for hair, beauty and wellness in Yelahanka New Town, Bangalore. Personalised care, advanced techniques and international products create exceptional experiences for men, women and children.</p>
           <div className="about-actions">
             <a className="about-gold-btn" href="#about-contact">Book Appointment <Arrow /></a>
-            <a className="about-line-btn" href="tel:+919187157676">Call Now <Arrow /></a>
+            <CallNowMenu className="about-line-btn" />
           </div>
         </motion.div>
       </section>
@@ -220,7 +221,7 @@ export default function AboutPage() {
           <p>1st Floor, D4-377, KHB Colony, Self Financed Society 407 Colony,<br />Yelahanka New Town, Bengaluru, Karnataka 560064</p>
           <div className="about-actions">
             <a className="about-dark-btn" href="tel:+919187157676">Book Appointment <Arrow /></a>
-            <a className="about-outline-dark-btn" href="tel:+919187157676">Call Now <Arrow /></a>
+            <CallNowMenu className="about-outline-dark-btn" />
             <a className="about-outline-dark-btn" href="https://wa.me/919187157676" target="_blank" rel="noreferrer">WhatsApp <Arrow /></a>
           </div>
         </motion.div>

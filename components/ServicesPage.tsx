@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import CallNowMenu from "./CallNowMenu";
 
 type ServiceCategory = {
   id: string;
@@ -184,7 +185,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="svc-final" id="book">
-        <motion.div {...reveal}><span>YOUR NEXT EXPERIENCE STARTS HERE</span><h2>Ready For Your Next<br />Salon Experience?</h2><p>STYLEHVN UNISEX SALON • 1st Floor, D4-377, KHB Colony, Yelahanka New Town, Bengaluru 560064</p><div className="svc-actions"><a className="svc-dark-btn" href="tel:+919187157676">Book Appointment <Arrow /></a><a className="svc-outline-btn" href="tel:+919187157676">Call Now <Arrow /></a><a className="svc-outline-btn" href="https://wa.me/919187157676" target="_blank" rel="noreferrer">WhatsApp Us <Arrow /></a></div></motion.div>
+        <motion.div {...reveal}><span>YOUR NEXT EXPERIENCE STARTS HERE</span><h2>Ready For Your Next<br />Salon Experience?</h2><p>STYLEHVN UNISEX SALON • 1st Floor, D4-377, KHB Colony, Yelahanka New Town, Bengaluru 560064</p><div className="svc-actions"><a className="svc-dark-btn" href="tel:+919187157676">Book Appointment <Arrow /></a><CallNowMenu className="svc-outline-btn" /><a className="svc-outline-btn" href="https://wa.me/919187157676" target="_blank" rel="noreferrer">WhatsApp Us <Arrow /></a></div></motion.div>
       </section>
     </>
   );
