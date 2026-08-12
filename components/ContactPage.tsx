@@ -1,11 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { FormEvent, useState } from "react";
-
-const SalonScene = dynamic(() => import("./SalonScene"), { ssr: false });
 
 const services = ["Women's Hair", "Men's Hair", "Kids Haircut", "Hair Botox", "Keratin", "Nanoplastia", "Hair Colour", "Hair Spa", "Bridal Makeup", "Party Makeup", "Facial", "Nail Art", "Manicure", "Pedicure", "Head Massage", "Body Massage"];
 const features = ["Experienced Stylists", "Premium Products", "Luxury Interior", "Certified Experts", "Advanced Hair Treatments", "Family Friendly", "Relaxing Environment", "Parking Available"];
@@ -51,7 +48,6 @@ export default function ContactPage() {
           <p>Whether you&apos;re planning a complete makeover, booking your regular haircut or exploring luxury Hair Botox, Keratin, Nanoplastia, nail artistry, facials or spa treatments, our experts are ready to welcome you.</p>
           <div className="ct-actions"><a className="ct-gold" href="#appointment">Book Appointment <Arrow /></a><a className="ct-line" href="tel:+919187157676">Call Now <Arrow /></a><a className="ct-line" href="https://wa.me/919187157676" target="_blank" rel="noreferrer">WhatsApp <Arrow /></a></div>
         </motion.div>
-        <motion.div className="ct-scene" initial={{opacity:0,scale:.94}} animate={{opacity:1,scale:1}} transition={{duration:1.2,delay:.25}} aria-label="Interactive three-dimensional salon chair and styling tools"><SalonScene /><span>MOVE YOUR CURSOR • INTERACTIVE SALON OBJECTS</span></motion.div>
       </section>
 
       <section className="ct-info ct-shell">

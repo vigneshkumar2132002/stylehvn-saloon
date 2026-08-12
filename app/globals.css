@@ -2154,10 +2154,6 @@ button {
 .ct-hero-copy { width:min(710px,calc(100% - 38px)); position:absolute; z-index:3; left:clamp(20px,6vw,110px); top:53%; transform:translateY(-48%); }
 .ct-hero h1 { margin:22px 0; font-size:clamp(58px,6.8vw,108px); line-height:.87; letter-spacing:-.07em; }
 .ct-hero-copy p { max-width:650px; color:rgba(255,255,255,.64); font-size:13px; line-height:1.75; }
-.ct-scene { width:52vw; height:82vh; min-height:600px; position:absolute; z-index:2; right:-2vw; top:13%; }
-.ct-scene::before { content:""; position:absolute; inset:12% 4% 4% 14%; border-radius:50%; background:radial-gradient(circle,rgba(239,177,74,.3),rgba(111,49,18,.12) 45%,transparent 72%); filter:blur(45px); }
-.ct-scene canvas { position:relative; }
-.ct-scene > span { position:absolute; right:8%; bottom:6%; color:rgba(255,255,255,.38); font-size:8px; letter-spacing:.13em; }
 .ct-actions { margin-top:30px; display:flex; flex-wrap:wrap; gap:9px; }
 .ct-actions a,.ct-form button { min-height:52px; padding:0 20px; display:inline-flex; align-items:center; justify-content:center; gap:20px; border-radius:11px; font-size:11px; font-weight:800; transition:transform .3s,box-shadow .3s; }
 .ct-actions a:hover,.ct-form button:hover { transform:translateY(-3px); box-shadow:0 14px 35px rgba(212,175,55,.18); }
@@ -2218,8 +2214,8 @@ button {
 .ct-final h2 { margin:24px 0; font-size:clamp(50px,6vw,92px); line-height:.93; letter-spacing:-.065em; }
 .ct-dark { color:#fff; background:#080808; }
 .ct-outline-dark { color:#080808; border:1px solid rgba(0,0,0,.4); }
-@media(max-width:950px){.ct-scene{opacity:.45!important;right:-18vw;width:72vw}.ct-info{grid-template-columns:1fr 1fr}.ct-form-section,.ct-map-section,.ct-hours{grid-template-columns:1fr}.ct-form-copy{position:relative;top:auto}.ct-map{height:520px}.ct-why>div{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.ct-shell{padding:90px 16px}.ct-hero{min-height:800px}.ct-hero-copy{left:18px;top:51%}.ct-hero h1{font-size:clamp(52px,16vw,72px)}.ct-scene{display:none}.ct-actions{flex-direction:column}.ct-actions a{width:100%}.ct-info{grid-template-columns:1fr}.ct-info a{min-height:190px}.ct-form-section{gap:50px}.ct-form{grid-template-columns:1fr;padding:25px 18px}.ct-form label{grid-column:1}.ct-map-section,.ct-hours,.ct-final{padding:90px 16px}.ct-map{height:420px}.ct-why>div{grid-template-columns:1fr 1fr}.ct-why article{min-height:175px;padding:17px}.ct-form-copy h2,.ct-map-section h2,.ct-hours h2,.ct-why h2,.ct-social h2,.ct-faq h2{font-size:clamp(42px,12vw,58px)}.ct-faq button{grid-template-columns:35px 1fr 25px;font-size:16px}.ct-faq article p{margin-left:35px}.ct-final>div{padding:38px 22px;border-radius:22px}}
+@media(max-width:950px){.ct-info{grid-template-columns:1fr 1fr}.ct-form-section,.ct-map-section,.ct-hours{grid-template-columns:1fr}.ct-form-copy{position:relative;top:auto}.ct-map{height:520px}.ct-why>div{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.ct-shell{padding:90px 16px}.ct-hero{min-height:800px}.ct-hero-copy{left:18px;top:51%}.ct-hero h1{font-size:clamp(52px,16vw,72px)}.ct-actions{flex-direction:column}.ct-actions a{width:100%}.ct-info{grid-template-columns:1fr}.ct-info a{min-height:190px}.ct-form-section{gap:50px}.ct-form{grid-template-columns:1fr;padding:25px 18px}.ct-form label{grid-column:1}.ct-map-section,.ct-hours,.ct-final{padding:90px 16px}.ct-map{height:420px}.ct-why>div{grid-template-columns:1fr 1fr}.ct-why article{min-height:175px;padding:17px}.ct-form-copy h2,.ct-map-section h2,.ct-hours h2,.ct-why h2,.ct-social h2,.ct-faq h2{font-size:clamp(42px,12vw,58px)}.ct-faq button{grid-template-columns:35px 1fr 25px;font-size:16px}.ct-faq article p{margin-left:35px}.ct-final>div{padding:38px 22px;border-radius:22px}}
 
 /* Services page */
 .services-page { color: #f7f4ed; background: #070707; }
