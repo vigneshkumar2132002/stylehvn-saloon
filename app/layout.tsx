@@ -5,7 +5,7 @@ import SmoothScroll from "../components/SmoothScroll";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://stylehvn.com",
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://stylehvnunisexsalon.com",
   ),
   alternates: {
     canonical: "/",

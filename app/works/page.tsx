@@ -28,14 +28,14 @@ export default function WorksPage() {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://stylehvn.com" },
-          { "@type": "ListItem", position: 2, name: "Works", item: "https://stylehvn.com/works" },
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://stylehvnunisexsalon.com" },
+          { "@type": "ListItem", position: 2, name: "Works", item: "https://stylehvnunisexsalon.com/works" },
         ],
       },
       {
         "@type": "Service",
         name: "Hair, beauty, grooming and wellness transformations",
-        provider: { "@id": "https://stylehvn.com/#salon" },
+        provider: { "@id": "https://stylehvnunisexsalon.com/#salon" },
         areaServed: "Yelahanka New Town, Bengaluru",
         serviceType: ["Haircuts", "Hair treatments", "Makeup", "Nail care", "Beauty and wellness"],
       },

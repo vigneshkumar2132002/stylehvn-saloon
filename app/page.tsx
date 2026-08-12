@@ -9,15 +9,15 @@ export default function Home() {
   const salonSchema = {
     "@context": "https://schema.org",
     "@type": ["HairSalon", "BeautySalon", "NailSalon", "LocalBusiness"],
-    "@id": "https://stylehvn.com/#salon",
+    "@id": "https://stylehvnunisexsalon.com/#salon",
     name: "STYLEHVN Unisex Salon",
     description:
       "STYLEHVN is a luxury unisex hair, beauty, makeup, nail and wellness salon in Yelahanka New Town, Bangalore.",
     image: [
-      "https://stylehvn.com/hero-slides/01-womens-styling.png",
-      "https://stylehvn.com/contact/contact-hero.png"
+      "https://stylehvnunisexsalon.com/hero-slides/01-womens-styling.png",
+      "https://stylehvnunisexsalon.com/contact/contact-hero.png"
     ],
-    url: "https://stylehvn.com",
+    url: "https://stylehvnunisexsalon.com",
     telephone: "+919187157676",
     email: "hello@stylehvn.com",
     priceRange: "₹₹₹",
