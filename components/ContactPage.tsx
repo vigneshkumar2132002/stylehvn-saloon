@@ -28,7 +28,7 @@ export default function ContactPage() {
     setSent(true);
   };
   const businessSchema = {
-    "@context":"https://schema.org","@type":["BeautySalon","LocalBusiness"],name:"STYLEHVN UNISEX SALON",telephone:"+91 91871 57676",email:"hello@stylehvn.com",
+    "@context":"https://schema.org","@type":["BeautySalon","LocalBusiness"],name:"STYLEHVN UNISEX SALON",telephone:["+91 91871 57676","+91 70195 11512"],email:"hello@stylehvn.com",
     address:{"@type":"PostalAddress",streetAddress:"1st Floor, D4-377, KHB Colony, Self Financed Society 407 Colony",addressLocality:"Yelahanka New Town",addressRegion:"Karnataka",postalCode:"560064",addressCountry:"IN"},
     openingHoursSpecification:[{"@type":"OpeningHoursSpecification",dayOfWeek:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],opens:"09:00",closes:"21:00"}],
   };
@@ -51,11 +51,11 @@ export default function ContactPage() {
       </section>
 
       <section className="ct-info ct-shell">
-        {[["Call Us","+91 91871 57676","tel:+919187157676"],["Visit Us","1st Floor, D4-377 • KHB Colony • Yelahanka New Town • Bengaluru 560064","https://maps.google.com/?q=STYLEHVN+UNISEX+SALON+Yelahanka"],["Email","hello@stylehvn.com","mailto:hello@stylehvn.com"],["Opening Hours","Every Day • 09:00 AM — 09:00 PM","#hours"]].map(([title,text,href],index)=><motion.a href={href} key={title} {...reveal}><small>0{index+1}</small><span>{title}</span><strong>{text}</strong><Arrow /></motion.a>)}
+        {[["Call Us","+91 91871 57676 / +91 70195 11512","tel:+917019511512"],["Visit Us","1st Floor, D4-377 • KHB Colony • Yelahanka New Town • Bengaluru 560064","https://maps.google.com/?q=STYLEHVN+UNISEX+SALON+Yelahanka"],["Email","hello@stylehvn.com","mailto:hello@stylehvn.com"],["Opening Hours","Every Day • 09:00 AM — 09:00 PM","#hours"]].map(([title,text,href],index)=><motion.a href={href} key={title} {...reveal}><small>0{index+1}</small><span>{title}</span><strong>{text}</strong><Arrow /></motion.a>)}
       </section>
 
       <section className="ct-form-section ct-shell" id="appointment">
-        <motion.div className="ct-form-copy" {...reveal}><span className="ct-kicker">BOOK YOUR VISIT</span><h2>Your time.<br />Your service.<br />Your STYLEHVN.</h2><p>Tell us what you&apos;re looking for and our team will help plan a personalised salon experience.</p><div><strong>STYLEHVN UNISEX SALON</strong><span>Yelahanka New Town • Bangalore North</span><span>+91 91871 57676</span></div></motion.div>
+        <motion.div className="ct-form-copy" {...reveal}><span className="ct-kicker">BOOK YOUR VISIT</span><h2>Your time.<br />Your service.<br />Your STYLEHVN.</h2><p>Tell us what you&apos;re looking for and our team will help plan a personalised salon experience.</p><div><strong>STYLEHVN UNISEX SALON</strong><span>Yelahanka New Town • Bangalore North</span><span>+91 91871 57676</span><span>+91 70195 11512</span></div></motion.div>
         <motion.form className="ct-form" onSubmit={onSubmit} {...reveal}>
           <label>Full Name<input name="name" type="text" required autoComplete="name" placeholder="Your name" /></label>
           <label>Phone Number<input name="phone" type="tel" required autoComplete="tel" placeholder="+91" /></label>
