@@ -106,28 +106,6 @@ export default function Home() {
       <WhoWeAre />
       <GalleryShowcase />
       <TransformationCta />
-      <section className="seo-intro" aria-labelledby="salon-intro-title">
-        <span className="eyebrow">LUXURY BEAUTY IN NORTH BANGALORE</span>
-        <h2 id="salon-intro-title">
-          Your premium hair and beauty destination in Yelahanka.
-        </h2>
-        <div className="seo-intro-copy">
-          <p>
-            Recognised by our clients as one of the best unisex salons in
-            Yelahanka, STYLEHVN brings elevated hair and beauty care to
-            Yelahanka New Town. Our professional stylists create precision
-            women’s cuts, modern men’s haircuts and comfortable kids’ haircuts,
-            supported by restorative Hair Spa rituals.
-          </p>
-          <p>
-            Visit our luxury salon in Bangalore for Hair Botox Treatment,
-            Keratin Treatment and Nanoplastia Hair Treatment, or discover our
-            luxury beauty studio and Luxury Nail Studio for Bridal Makeup,
-            Facial care, Nail Art, Manicure, Pedicure, Head Massage and Body
-            Massage experiences.
-          </p>
-        </div>
-      </section>
       <section className="page-section contact-section" id="contact">
         <span>Appointments</span>
         <h2>Let’s create your signature look.</h2>
