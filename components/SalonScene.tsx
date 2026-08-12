@@ -1,40 +1,31 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Sparkles } from "@react-three/drei";
+import { Float, RoundedBox, Sparkles } from "@react-three/drei";
 import { useRef } from "react";
 import * as THREE from "three";
 
 function Chair() {
   const group = useRef<THREE.Group>(null);
+  const rotation = useRef(.34);
   useFrame((state, delta) => {
     if (!group.current) return;
-    group.current.rotation.y += delta * 0.14;
+    rotation.current += delta * 0.1;
+    group.current.rotation.y = rotation.current;
     group.current.position.y = -1.05 + Math.sin(state.clock.elapsedTime * .6) * .025;
   });
   return (
-    <group ref={group} position={[0, -1.05, 0]}>
-      <mesh position={[0, .05, 0]} castShadow>
-        <boxGeometry args={[1.55, .32, 1.45]} />
-        <meshStandardMaterial color="#080808" roughness={.3} metalness={.2} />
-      </mesh>
-      <mesh position={[0, .9, .55]} rotation={[-.13, 0, 0]} castShadow>
-        <boxGeometry args={[1.52, 1.65, .28]} />
-        <meshStandardMaterial color="#0a0a0a" roughness={.28} />
-      </mesh>
-      {[-.85, .85].map(x => <mesh key={x} position={[x, .55, .05]} castShadow><boxGeometry args={[.16,.16,1.15]} /><meshStandardMaterial color="#c59a31" metalness={.9} roughness={.18} /></mesh>)}
+    <group ref={group} position={[0, -1.05, 0]} scale={1.02}>
+      <RoundedBox args={[1.55, .38, 1.42]} radius={.14} smoothness={5} position={[0, .05, 0]} castShadow>
+        <meshStandardMaterial color="#71351d" roughness={.38} metalness={.08} emissive="#2b1007" emissiveIntensity={.28} />
+      </RoundedBox>
+      <RoundedBox args={[1.34, 1.42, .3]} radius={.2} smoothness={6} position={[0, .87, .54]} rotation={[-.16, 0, 0]} castShadow>
+        <meshStandardMaterial color="#824324" roughness={.36} metalness={.06} emissive="#321208" emissiveIntensity={.25} />
+      </RoundedBox>
+      <RoundedBox args={[.76,.24,.2]} radius={.1} smoothness={5} position={[0,1.65,.58]} castShadow><meshStandardMaterial color="#9a5832" roughness={.34} emissive="#351409" emissiveIntensity={.22} /></RoundedBox>
+      {[-.84, .84].map(x => <RoundedBox key={x} args={[.16,.18,1.15]} radius={.06} smoothness={4} position={[x, .54,.02]} castShadow><meshStandardMaterial color="#e2b957" emissive="#6f4810" emissiveIntensity={.35} metalness={.9} roughness={.16} /></RoundedBox>)}
       <mesh position={[0, -.42, 0]}><cylinderGeometry args={[.1,.1,.75,24]} /><meshStandardMaterial color="#c59a31" metalness={1} roughness={.15} /></mesh>
-      <mesh position={[0, -.82, 0]}><cylinderGeometry args={[.65,.72,.12,40]} /><meshStandardMaterial color="#16130d" metalness={.9} roughness={.2} /></mesh>
-    </group>
-  );
-}
-
-function Mirror() {
-  return (
-    <group position={[0, 1.3, -1.55]}>
-      <mesh><boxGeometry args={[2.9,3.8,.12]} /><meshStandardMaterial color="#b98b26" emissive="#8d6518" emissiveIntensity={1.2} metalness={.9} roughness={.15} /></mesh>
-      <mesh position={[0,0,.08]}><boxGeometry args={[2.55,3.45,.08]} /><meshPhysicalMaterial color="#171717" metalness={.75} roughness={.08} clearcoat={1} /></mesh>
-      <pointLight position={[0,0,.55]} color="#efc457" intensity={18} distance={5} />
+      <mesh position={[0, -.82, 0]}><cylinderGeometry args={[.68,.75,.13,40]} /><meshStandardMaterial color="#d0a13b" emissive="#5b3707" emissiveIntensity={.3} metalness={.92} roughness={.18} /></mesh>
     </group>
   );
 }
@@ -70,18 +61,21 @@ function Scene() {
   });
   return (
     <>
-      <ambientLight intensity={.55} />
-      <spotLight position={[4,6,4]} angle={.45} penumbra={1} intensity={35} color="#ffd879" castShadow />
-      <pointLight position={[-4,1,2]} intensity={14} color="#c89024" />
-      <Mirror /><Chair /><Tools />
-      <Sparkles count={70} scale={[6,5,4]} size={2.5} speed={.28} color="#e7ba49" opacity={.65} />
+      <ambientLight intensity={1.45} color="#ffe6bd" />
+      <hemisphereLight color="#ffe4aa" groundColor="#351609" intensity={1.8} />
+      <spotLight position={[3.5,5.5,4.5]} angle={.5} penumbra={.8} intensity={58} color="#ffd887" castShadow />
+      <spotLight position={[-3,3,2.5]} angle={.62} penumbra={1} intensity={32} color="#ff9f55" />
+      <pointLight position={[0,1.6,2.8]} intensity={22} distance={7} color="#fff1d0" />
+      <pointLight position={[2.8,.2,-1]} intensity={18} distance={5} color="#d99a2b" />
+      <Chair /><Tools />
+      <Sparkles count={48} scale={[6,5,4]} size={2.2} speed={.25} color="#f4c75d" opacity={.55} />
     </>
   );
 }
 
 export default function SalonScene() {
   return (
-    <Canvas camera={{ position: [0,.4,6.4], fov: 40 }} dpr={[1,1.5]} shadows gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}>
+    <Canvas camera={{ position: [0,.35,5.75], fov: 38 }} dpr={[1,1.5]} shadows gl={{ antialias: true, alpha: true, powerPreference: "high-performance", toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.35 }}>
       <Scene />
     </Canvas>
   );
