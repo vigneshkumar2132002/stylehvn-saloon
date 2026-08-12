@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type Work = { id: number; category: string; slug: string; title: string; description: string; image: string; shape: string; alt: string };
 
@@ -28,6 +28,10 @@ const categories = ["All", "Women's Hair", "Men's Grooming", "Kids Haircuts", "H
 
 export default function WorksPortfolio() {
   const reduceMotion = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroImageY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 38]);
+  const heroCopyY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -26]);
   const [filter, setFilter] = useState("All");
   const [selected, setSelected] = useState<Work | null>(null);
 
@@ -56,19 +60,23 @@ export default function WorksPortfolio() {
   }, [selected, close]);
 
   return <>
-    <section className="works-hero">
-      <div className="works-hero-copy">
-        <span>STYLEHVN • WORKS</span>
-        <h1>Transformations Crafted With Precision</h1>
-        <p>Explore the hair, beauty, grooming and wellness transformations created at STYLEHVN Unisex Salon in Yelahanka New Town, Bengaluru. Every look is created around the individual.</p>
-        <div><a href="#transformations">Explore Transformations</a><Link href="/contact">Book an Appointment</Link></div>
-      </div>
-      <div className="works-hero-image"><Image src="/hero-slides/01-womens-styling.png" alt="Women's haircut styling concept at STYLEHVN" fill priority sizes="(max-width: 800px) 100vw, 52vw" /><small>STYLE CONCEPT</small></div>
+    <section className="works-hero" ref={heroRef}>
+      <motion.div className="works-hero-copy" style={{ y: heroCopyY }} initial="hidden" animate="show" variants={{ hidden:{},show:{transition:{staggerChildren:reduceMotion?0:.12}} }}>
+        <motion.span variants={{hidden:{y:18},show:{y:0,transition:{duration:.65}}}}>STYLEHVN • WORKS</motion.span>
+        <motion.h1 variants={{hidden:{y:45},show:{y:0,transition:{duration:.85,ease:[.22,1,.36,1]}}}}>Transformations Crafted With Precision</motion.h1>
+        <motion.p variants={{hidden:{y:25},show:{y:0,transition:{duration:.75}}}}>Explore the hair, beauty, grooming and wellness transformations created at STYLEHVN Unisex Salon in Yelahanka New Town, Bengaluru. Every look is created around the individual.</motion.p>
+        <motion.div variants={{hidden:{y:20},show:{y:0,transition:{duration:.7}}}}><a href="#transformations">Explore Transformations</a><Link href="/contact">Book an Appointment</Link></motion.div>
+      </motion.div>
+      <motion.div className="works-hero-image" style={{ y: heroImageY }} initial={{scale:reduceMotion?1:1.025,y:reduceMotion?0:22}} animate={{scale:1,y:0}} transition={{duration:1.15,ease:[.22,1,.36,1],delay:.1}}><Image src="/hero-slides/01-womens-styling.png" alt="Women's haircut styling concept at STYLEHVN" fill priority sizes="(max-width: 800px) 100vw, 52vw" /><small>STYLE CONCEPT</small><i aria-hidden="true">01</i></motion.div>
     </section>
 
     <section className="works-story">
       <span>OUR WORK</span><h2>Every Look Has A Story</h2>
       <p>Great salon work begins with understanding the person behind the look. Our stylists and beauty professionals combine consultation, technique and attention to detail to create results that feel personal—not simply copied from a trend.</p>
+    </section>
+
+    <section className="works-highlights" aria-label="STYLEHVN service highlights">
+      {["Hair Transformations","Advanced Hair Treatments","Professional Makeup","Luxury Nail Care","Men's Grooming","Beauty & Wellness"].map((item,index)=><motion.div key={item} initial={{opacity:0,y:reduceMotion?0:28}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:.6,delay:reduceMotion?0:index*.07}}><small>0{index+1}</small><span>{item}</span></motion.div>)}
     </section>
 
     <section id="transformations" className="works-portfolio" aria-labelledby="works-portfolio-title">
@@ -87,6 +95,15 @@ export default function WorksPortfolio() {
           </motion.article>)}
         </AnimatePresence>
       </motion.div>
+    </section>
+
+    <section className="works-comparison">
+      <motion.header initial={{opacity:0,y:reduceMotion?0:45}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:.8}}><span>VISUAL STUDY</span><h2>A Look, Considered From Every Angle</h2><p>A style concept showing the consultation and finished styling moments. Concept imagery is editorial and is not presented as a genuine client before-and-after result.</p></motion.header>
+      <div className="comparison-frame">
+        <motion.figure initial={{opacity:0,x:reduceMotion?0:-45}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:.9}}><Image src="/stylehvn-who-we-are.png" alt="STYLEHVN luxury salon consultation concept" fill sizes="(max-width: 750px) 100vw, 50vw"/><figcaption>CONSULTATION · STYLE CONCEPT</figcaption></motion.figure>
+        <motion.figure initial={{opacity:0,x:reduceMotion?0:45}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:.9,delay:.12}}><Image src="/hero-slides/01-womens-styling.png" alt="STYLEHVN finished women's hair styling concept" fill sizes="(max-width: 750px) 100vw, 50vw"/><figcaption>FINISHED LOOK · STYLE CONCEPT</figcaption></motion.figure>
+        <span className="comparison-mark" aria-hidden="true">STYLEHVN</span>
+      </div>
     </section>
 
     <section className="works-process"><span>THE STYLEHVN APPROACH</span><h2>Precision Behind Every Transformation</h2><div>{[["Personalised Consultation","We begin by understanding your hair, skin, lifestyle and desired look before recommending a service."],["Professional Technique","Our approach focuses on precision, detail and a finish that suits the individual."],["Premium Experience","Every appointment is designed to feel comfortable, refined and personal."],["Complete Beauty Care","Hair, grooming, makeup, skin, nails and wellness—all under one salon experience."]].map(([title, copy], i) => <article key={title}><b>0{i+1}</b><h3>{title}</h3><p>{copy}</p></article>)}</div></section>
