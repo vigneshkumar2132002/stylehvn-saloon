@@ -19,7 +19,7 @@ export async function POST(request: Request) {
   const payload = {
     submittedAt: new Date().toISOString(),
     name: String(body.name).trim().slice(0, 120),
-    phone: String(body.phone).trim().slice(0, 30),
+    phone: `'${String(body.phone).trim().slice(0, 30)}`,
     email: String(body.email ?? "").trim().slice(0, 180),
     service: String(body.service).trim().slice(0, 120),
     date: String(body.date).trim().slice(0, 20),
