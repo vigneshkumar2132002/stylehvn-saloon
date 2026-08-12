@@ -193,6 +193,7 @@ export default function GalleryShowcase() {
         {lightbox !== null && filtered[lightbox] && (
           <motion.div
             className="gallery-lightbox"
+            data-lenis-prevent
             role="dialog"
             aria-modal="true"
             aria-label={`${filtered[lightbox].title} image viewer`}

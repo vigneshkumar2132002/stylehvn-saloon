@@ -80,7 +80,7 @@ export default function WorksPortfolio() {
     </section>
 
     <section id="transformations" className="works-portfolio" aria-labelledby="works-portfolio-title">
-      <div className="works-filters" role="group" aria-label="Filter transformations">
+      <div className="works-filters" role="group" aria-label="Filter transformations" data-lenis-prevent>
         {categories.map(category => <button key={category} type="button" className={filter === category ? "active" : ""} aria-pressed={filter === category} onClick={() => chooseFilter(category)}>{category}</button>)}
       </div>
       <div className="works-feature">
@@ -112,6 +112,6 @@ export default function WorksPortfolio() {
 
     <section className="works-cta"><span>YOUR STYLE · YOUR STORY</span><h2>Your Next Look Starts Here</h2><p>From precision haircuts and advanced hair treatments to makeup, nails, skincare and relaxing wellness services, STYLEHVN is ready to create your next signature look.</p><div><Link href="/contact">Book Your Appointment</Link><Link href="/services">Explore Services</Link><a href="tel:+919187157676">Call +91 91871 57676</a></div></section>
 
-    <AnimatePresence>{selected && <motion.div className="work-modal" role="dialog" aria-modal="true" aria-labelledby="work-modal-title" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={close}><motion.div className="work-modal-panel" initial={{ opacity: 0, scale: reduceMotion ? 1 : .96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .96 }} transition={{ duration: reduceMotion ? 0 : .55 }} onClick={e => e.stopPropagation()}><button className="work-modal-close" autoFocus type="button" onClick={close} aria-label="Close transformation">×</button><div className="work-modal-image"><Image src={selected.image} alt={selected.alt} fill sizes="(max-width: 800px) 100vw, 55vw" /><small>STYLE CONCEPT</small></div><div className="work-modal-copy"><span>{selected.category}</span><h2 id="work-modal-title">{selected.title}</h2><p>{selected.description}</p><small>Recommended service</small><strong>{selected.category}</strong><Link href="/contact">Book Appointment</Link></div></motion.div></motion.div>}</AnimatePresence>
+    <AnimatePresence>{selected && <motion.div className="work-modal" role="dialog" aria-modal="true" aria-labelledby="work-modal-title" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={close}><motion.div className="work-modal-panel" data-lenis-prevent initial={{ opacity: 0, scale: reduceMotion ? 1 : .96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .96 }} transition={{ duration: reduceMotion ? 0 : .55 }} onClick={e => e.stopPropagation()}><button className="work-modal-close" autoFocus type="button" onClick={close} aria-label="Close transformation">×</button><div className="work-modal-image"><Image src={selected.image} alt={selected.alt} fill sizes="(max-width: 800px) 100vw, 55vw" /><small>STYLE CONCEPT</small></div><div className="work-modal-copy"><span>{selected.category}</span><h2 id="work-modal-title">{selected.title}</h2><p>{selected.description}</p><small>Recommended service</small><strong>{selected.category}</strong><Link href="/contact">Book Appointment</Link></div></motion.div></motion.div>}</AnimatePresence>
   </>;
 }
