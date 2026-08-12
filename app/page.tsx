@@ -106,10 +106,6 @@ export default function Home() {
       <WhoWeAre />
       <GalleryShowcase />
       <TransformationCta />
-      <section className="page-section contact-section" id="contact">
-        <span>Appointments</span>
-        <h2>Let’s create your signature look.</h2>
-      </section>
     </main>
   );
 }
