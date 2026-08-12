@@ -5,7 +5,7 @@ import type { CSSProperties } from "react";
 
 const links = [
   { label: "Home", href: "/" },
-  { label: "Works", href: "/#works" },
+  { label: "Works", href: "/works" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Gallery", href: "/#gallery" },
