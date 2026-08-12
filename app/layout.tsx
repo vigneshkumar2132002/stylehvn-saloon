@@ -47,6 +47,11 @@ export const metadata: Metadata = {
   authors: [{ name: "STYLEHVN Unisex Salon" }],
   creator: "STYLEHVN Unisex Salon",
   category: "Beauty Salon",
+  icons: {
+    icon: [{ url: "/stylehvn-logo.png", type: "image/png" }],
+    shortcut: "/stylehvn-logo.png",
+    apple: "/stylehvn-logo.png",
+  },
   robots: {
     index: true,
     follow: true,
