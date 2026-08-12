@@ -1370,7 +1370,7 @@ button {
 }
 
 .transformation-cta-section .services-areas {
-  margin: 32px auto 32px;
+  margin: 14px auto 18px;
 }
 
 .services-cta > div:first-child { max-width: 850px; }
@@ -1910,7 +1910,7 @@ button {
 
 /* Editorial gallery */
 .gallery-section {
-  padding: 140px clamp(16px, 3vw, 50px) 42px;
+  padding: 140px clamp(16px, 3vw, 50px) 12px;
   overflow: hidden;
   background: #070707;
 }
@@ -2205,8 +2205,8 @@ button {
 }
 
 @media (max-width: 650px) {
-  .gallery-section { padding: 90px 12px 30px; }
-  .transformation-cta-section .services-areas { margin: 24px auto; }
+  .gallery-section { padding: 90px 12px 8px; }
+  .transformation-cta-section .services-areas { margin: 10px auto 14px; }
   .gallery-header h2 { font-size: clamp(43px, 13vw, 60px); }
   .gallery-filters {
     justify-content: flex-start;
