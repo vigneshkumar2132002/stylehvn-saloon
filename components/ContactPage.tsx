@@ -1,12 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { FormEvent, useState } from "react";
 import CallNowMenu from "./CallNowMenu";
 
 const services = ["Women's Hair", "Men's Hair", "Kids Haircut", "Hair Botox", "Keratin", "Nanoplastia", "Hair Colour", "Hair Spa", "Bridal Makeup", "Party Makeup", "Facial", "Nail Art", "Manicure", "Pedicure", "Head Massage", "Body Massage"];
 const features = ["Experienced Stylists", "Premium Products", "Luxury Interior", "Certified Experts", "Advanced Hair Treatments", "Family Friendly", "Relaxing Environment", "Parking Available"];
+const appointmentTimes = Array.from({ length: 27 }, (_, index) => {
+  const totalMinutes = 8 * 60 + index * 30;
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  const period = hours >= 12 ? "PM" : "AM";
+  const displayHour = hours % 12 || 12;
+  const value = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+  return { value, label: `${displayHour}:${String(minutes).padStart(2, "0")} ${period}` };
+});
 const faqs = [
   ["Do I need an appointment?", "Appointments are recommended, especially for weekends, treatments, makeup, nails and wellness services."],
   ["Do you accept walk-ins?", "Yes, walk-ins are welcome whenever a stylist or specialist is available."],
@@ -20,13 +29,24 @@ function Arrow() { return <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M
 
 export default function ContactPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [sent, setSent] = useState(false);
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const [submitState, setSubmitState] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmitState("sending");
     const data = new FormData(event.currentTarget);
-    const message = `Hello STYLEHVN, I would like to book an appointment.%0AName: ${data.get("name")}%0APhone: ${data.get("phone")}%0AService: ${data.get("service")}%0ADate: ${data.get("date")}%0ATime: ${data.get("time")}%0AMessage: ${data.get("message")}`;
-    window.open(`https://wa.me/919187157676?text=${message}`, "_blank", "noopener,noreferrer");
-    setSent(true);
+    try {
+      const response = await fetch("/api/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(data.entries())),
+      });
+      if (!response.ok) throw new Error("Unable to save appointment");
+      event.currentTarget.reset();
+      setSubmitState("success");
+    } catch {
+      setSubmitState("error");
+    }
   };
   const businessSchema = {
     "@context":"https://schema.org","@type":["BeautySalon","LocalBusiness"],name:"STYLEHVN UNISEX SALON",telephone:["+91 91871 57676","+91 70195 11512"],email:"hello@stylehvn.com",
@@ -62,13 +82,25 @@ export default function ContactPage() {
           <label>Phone Number<input name="phone" type="tel" required autoComplete="tel" placeholder="+91" /></label>
           <label>Email Address<input name="email" type="email" autoComplete="email" placeholder="you@example.com" /></label>
           <label>Preferred Service<select name="service" required defaultValue=""><option value="" disabled>Select a service</option>{services.map(service=><option key={service}>{service}</option>)}</select></label>
-          <label>Preferred Date<input name="date" type="date" required /></label>
-          <label>Preferred Time<input name="time" type="time" required /></label>
+          <label className="ct-picker-label">Preferred Date<span className="ct-picker"><i aria-hidden="true">◇</i><input name="date" type="date" min={today} required /></span></label>
+          <label className="ct-picker-label">Preferred Time<span className="ct-picker"><i aria-hidden="true">◷</i><select name="time" required defaultValue=""><option value="" disabled>Select a time</option>{appointmentTimes.map(time=><option key={time.value} value={time.value}>{time.label}</option>)}</select></span><small>Available from 8:00 AM to 9:00 PM</small></label>
           <label className="ct-full">Message<textarea name="message" rows={4} placeholder="Tell us about the look or treatment you have in mind" /></label>
-          <button className="ct-full" type="submit">Book My Appointment <Arrow /></button>
-          {sent && <p className="ct-form-status" role="status">Your booking details are ready in WhatsApp. Send the message to confirm with our team.</p>}
+          <button className="ct-full" type="submit" disabled={submitState==="sending"}>{submitState==="sending"?"Saving Your Appointment…":"Book My Appointment"} <Arrow /></button>
+          {submitState==="error" && <p className="ct-form-status ct-form-error" role="alert">We couldn&apos;t save your appointment. Please try again or call us.</p>}
         </motion.form>
       </section>
+
+      <AnimatePresence>
+        {submitState==="success" && <motion.div className="ct-success-modal" role="dialog" aria-modal="true" aria-labelledby="booking-success-title" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={()=>setSubmitState("idle")}>
+          <motion.div initial={{opacity:0,y:28,scale:.96}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,y:18,scale:.97}} transition={{duration:.45,ease:[.22,1,.36,1]}} onClick={event=>event.stopPropagation()}>
+            <button type="button" className="ct-success-close" aria-label="Close confirmation" onClick={()=>setSubmitState("idle")}>×</button>
+            <span className="ct-success-mark">S</span><small>APPOINTMENT REQUEST RECEIVED</small>
+            <h2 id="booking-success-title">Let&apos;s change<br />your look.</h2>
+            <p>Your details have been saved. The STYLEHVN team will contact you shortly to confirm your appointment.</p>
+            <button type="button" className="ct-success-done" onClick={()=>setSubmitState("idle")}>Done <Arrow /></button>
+          </motion.div>
+        </motion.div>}
+      </AnimatePresence>
 
       <section className="ct-map-section">
         <motion.div className="ct-map" {...reveal}><iframe title="Google map showing STYLEHVN Unisex Salon" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=STYLEHVN%20UNISEX%20SALON%20Yelahanka%20New%20Town&output=embed" /></motion.div>
