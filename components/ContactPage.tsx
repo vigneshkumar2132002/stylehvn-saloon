@@ -30,7 +30,7 @@ export default function ContactPage() {
   const businessSchema = {
     "@context":"https://schema.org","@type":["BeautySalon","LocalBusiness"],name:"STYLEHVN UNISEX SALON",telephone:["+91 91871 57676","+91 70195 11512"],email:"hello@stylehvn.com",
     address:{"@type":"PostalAddress",streetAddress:"1st Floor, D4-377, KHB Colony, Self Financed Society 407 Colony",addressLocality:"Yelahanka New Town",addressRegion:"Karnataka",postalCode:"560064",addressCountry:"IN"},
-    openingHoursSpecification:[{"@type":"OpeningHoursSpecification",dayOfWeek:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],opens:"09:00",closes:"21:00"}],
+    openingHoursSpecification:[{"@type":"OpeningHoursSpecification",dayOfWeek:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],opens:"08:00",closes:"21:00"}],
   };
   const contactSchema = {"@context":"https://schema.org","@type":"ContactPage",name:"Contact STYLEHVN Unisex Salon",mainEntity:businessSchema};
   const faqSchema = {"@context":"https://schema.org","@type":"FAQPage",mainEntity:faqs.map(([q,a])=>({"@type":"Question",name:q,acceptedAnswer:{"@type":"Answer",text:a}}))};
@@ -51,7 +51,7 @@ export default function ContactPage() {
       </section>
 
       <section className="ct-info ct-shell">
-        {[["Call Us","+91 91871 57676 / +91 70195 11512","tel:+917019511512"],["Visit Us","1st Floor, D4-377 • KHB Colony • Yelahanka New Town • Bengaluru 560064","https://maps.google.com/?q=STYLEHVN+UNISEX+SALON+Yelahanka"],["Email","hello@stylehvn.com","mailto:hello@stylehvn.com"],["Opening Hours","Every Day • 09:00 AM — 09:00 PM","#hours"]].map(([title,text,href],index)=><motion.a href={href} key={title} {...reveal}><small>0{index+1}</small><span>{title}</span><strong>{text}</strong><Arrow /></motion.a>)}
+        {[["Call Us","+91 91871 57676 / +91 70195 11512","tel:+917019511512"],["Visit Us","1st Floor, D4-377 • KHB Colony • Yelahanka New Town • Bengaluru 560064","https://maps.google.com/?q=STYLEHVN+UNISEX+SALON+Yelahanka"],["Email","hello@stylehvn.com","mailto:hello@stylehvn.com"],["Opening Hours","Every Day • 08:00 AM — 09:00 PM","#hours"]].map(([title,text,href],index)=><motion.a href={href} key={title} {...reveal}><small>0{index+1}</small><span>{title}</span><strong>{text}</strong><Arrow /></motion.a>)}
       </section>
 
       <section className="ct-form-section ct-shell" id="appointment">
@@ -76,7 +76,7 @@ export default function ContactPage() {
 
       <section className="ct-hours" id="hours">
         <motion.header {...reveal}><span className="ct-kicker">OPEN EVERY DAY</span><h2>Luxury, on your schedule.</h2></motion.header>
-        <motion.div {...reveal}><span>Monday — Sunday</span><strong>09:00 AM — 09:00 PM</strong><p>Appointments recommended for weekends and advanced services.</p></motion.div>
+        <motion.div {...reveal}><span>Monday — Sunday</span><strong>08:00 AM — 09:00 PM</strong><p>Appointments recommended for weekends and advanced services.</p></motion.div>
       </section>
 
       <section className="ct-why ct-shell">

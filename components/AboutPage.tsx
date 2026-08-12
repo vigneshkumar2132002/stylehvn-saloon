@@ -74,7 +74,7 @@ export default function AboutPage() {
     openingHoursSpecification: [{
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      opens: "09:00",
+      opens: "08:00",
       closes: "21:00",
     }],
     aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "2000" },

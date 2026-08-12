@@ -129,7 +129,7 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div><span>Open Every Day</span><strong>09:00 AM – 09:00 PM</strong></div>
+            <div><span>Open Every Day</span><strong>08:00 AM – 09:00 PM</strong></div>
             <div><span>Location</span><strong>Yelahanka New Town<br />Bangalore</strong></div>
             <div><span>Call</span><a href="tel:+919187157676">+91 91871 57676</a><br /><a href="tel:+917019511512">+91 70195 11512</a></div>
             <div className="slots"><i />Book Today — Limited Slots Available</div>

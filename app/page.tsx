@@ -46,7 +46,7 @@ export default function Home() {
           "Saturday",
           "Sunday"
         ],
-        opens: "09:00",
+        opens: "08:00",
         closes: "21:00"
       }
     ],
