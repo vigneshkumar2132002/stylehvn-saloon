@@ -21,6 +21,24 @@ function ArrowIcon() {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      setScrolled(window.scrollY > 48);
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -30,7 +48,7 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className={`site-header ${open ? "is-open" : ""}`}>
+    <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${open ? "is-open" : ""}`}>
       <nav className="navbar" aria-label="Main navigation">
         <a className="brand" href="/" onClick={() => setOpen(false)}>
           <img src="/stylehvn-logo.png" alt="StyleHvn" />
