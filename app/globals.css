@@ -2527,6 +2527,8 @@ button {
   .svc-hero h1 { font-size: clamp(49px,14vw,70px); }
   .svc-actions { flex-direction: column; }
   .svc-actions a { width: 100%; }
+  .svc-actions .call-now-menu { width: 100%; }
+  .svc-actions .call-now-trigger { width: 100%; display: flex; }
   .svc-quick { top: 90px; padding-inline: 10px; }
   .svc-list { padding: 55px 16px 90px; }
   .svc-category { padding: 55px 0; scroll-margin-top: 155px; }
