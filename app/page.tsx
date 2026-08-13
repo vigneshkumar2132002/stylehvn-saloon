@@ -67,7 +67,7 @@ export default function Home() {
       "https://www.instagram.com/stylehvn/",
       "https://www.facebook.com/stylehvn/",
       "https://wa.me/919187157676",
-      "https://maps.google.com/?q=STYLEHVN+UNISEX+SALON+Yelahanka"
+      "https://maps.app.goo.gl/SnmPULvuh2pK4y3o7"
     ],
     makesOffer: [
       "Women's Hair Styling",

@@ -97,7 +97,7 @@ export default function ContactPage() {
       </section>
 
       <section className="ct-info ct-shell">
-        {[["Call Us","+91 91871 57676 / +91 70195 11512","tel:+917019511512"],["Visit Us","1st Floor, D4-377 • KHB Colony • Yelahanka New Town • Bengaluru 560064","https://maps.google.com/?q=STYLEHVN+UNISEX+SALON+Yelahanka"],["Email","hello@stylehvn.com","mailto:hello@stylehvn.com"],["Opening Hours","Every Day • 08:00 AM — 09:00 PM","#hours"]].map(([title,text,href],index)=><motion.a href={href} key={title} {...reveal}><small>0{index+1}</small><span>{title}</span><strong>{text}</strong><Arrow /></motion.a>)}
+        {[["Call Us","+91 91871 57676 / +91 70195 11512","tel:+917019511512"],["Visit Us","1st Floor, D4-377 • KHB Colony • Yelahanka New Town • Bengaluru 560064","https://maps.app.goo.gl/SnmPULvuh2pK4y3o7"],["Email","hello@stylehvn.com","mailto:hello@stylehvn.com"],["Opening Hours","Every Day • 08:00 AM — 09:00 PM","#hours"]].map(([title,text,href],index)=><motion.a href={href} key={title} {...reveal}><small>0{index+1}</small><span>{title}</span><strong>{text}</strong><Arrow /></motion.a>)}
       </section>
 
       <section className="ct-form-section ct-shell" id="appointment">
@@ -126,7 +126,7 @@ export default function ContactPage() {
 
       <section className="ct-map-section">
         <motion.div className="ct-map" {...reveal}><iframe title="Google map showing STYLEHVN Unisex Salon" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=STYLEHVN%20UNISEX%20SALON%20Yelahanka%20New%20Town&output=embed" /></motion.div>
-        <motion.aside {...reveal}><span className="ct-kicker">FIND STYLEHVN</span><h2>In the heart of<br />Yelahanka New Town.</h2><p>1st Floor, D4-377,<br />KHB Colony, Self Financed Society 407 Colony,<br />Yelahanka New Town, Bengaluru,<br />Karnataka 560064</p><div className="ct-actions"><a className="ct-gold" href="https://maps.google.com/?q=STYLEHVN+UNISEX+SALON+Yelahanka" target="_blank" rel="noreferrer">Open Google Maps <Arrow /></a><CallNowMenu className="ct-line" /></div></motion.aside>
+        <motion.aside {...reveal}><span className="ct-kicker">FIND STYLEHVN</span><h2>In the heart of<br />Yelahanka New Town.</h2><p>1st Floor, D4-377,<br />KHB Colony, Self Financed Society 407 Colony,<br />Yelahanka New Town, Bengaluru,<br />Karnataka 560064</p><div className="ct-actions"><a className="ct-gold" href="https://maps.app.goo.gl/SnmPULvuh2pK4y3o7" target="_blank" rel="noreferrer">Open Google Maps <Arrow /></a><CallNowMenu className="ct-line" /></div></motion.aside>
       </section>
 
       <section className="ct-hours" id="hours">
