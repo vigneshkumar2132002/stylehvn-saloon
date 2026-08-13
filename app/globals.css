@@ -1643,6 +1643,15 @@ button {
   .services-cta-actions a {
     width: 100%;
   }
+
+  .services-cta-actions .call-now-menu {
+    width: 100%;
+  }
+
+  .services-cta-actions .call-now-trigger {
+    width: 100%;
+    display: flex;
+  }
 }
 
 /* Who we are */
